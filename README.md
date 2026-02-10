@@ -49,12 +49,11 @@ A production-quality Snake game built with vanilla HTML/CSS/JS (ES modules). No 
 - High-contrast mode and reduced-motion option.
 
 ## Assets
-This repo uses placeholder filenames. Replace these with your own assets:
-- `assets/snake-sprites.png` — sprite sheet, recommended 256×64 PNG (head/body/tail variants).
-- `assets/eat.wav` — short SFX (0.1–0.2s).
-- `assets/die.wav` — short SFX (0.2–0.4s).
+This repo uses assets.
+- `assets/snake-sprites.png` — sprite sheet (head/body/tail variants).
+- `assets/eat.wav` — short SFX.
+- `assets/die.wav` — short SFX.
 
-Suggested sources: [Kenney.nl](https://kenney.nl/assets), [OpenGameArt](https://opengameart.org/).
 
 ## Testing
 The test harness runs in the browser (no Node required).
