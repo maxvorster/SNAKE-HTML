@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Snake — Modern Web Edition</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/snake-sprites.png" />
+  </head>
+  <body>
+    <a class="skip-link" href="#game-root">Skip to game</a>
+
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand__icon" aria-hidden="true">🐍</div>
+        <div>
+          <h1>Snake</h1>
+          <p class="subtitle">Modern, smooth, and mobile-first.</p>
+        </div>
+      </div>
+      <nav class="header-actions" aria-label="Global">
+        <button id="theme-toggle" class="ghost" type="button" aria-pressed="false">
+          Theme
+        </button>
+        <button id="contrast-toggle" class="ghost" type="button" aria-pressed="false">
+          High Contrast
+        </button>
+        <button id="motion-toggle" class="ghost" type="button" aria-pressed="false">
+          Reduce Motion
+        </button>
+      </nav>
+    </header>
+
+    <main id="game-root" class="layout" tabindex="-1">
+      <section class="panel" aria-labelledby="game-title">
+        <div class="panel__header">
+          <h2 id="game-title">Game</h2>
+          <div class="status-row" role="status" aria-live="polite">
+            <span id="status-score">Score: 0</span>
+            <span id="status-level">Level: 1</span>
+            <span id="status-speed">Speed: 8 tps</span>
+          </div>
+        </div>
+        <div class="canvas-shell">
+          <canvas
+            id="game-canvas"
+            width="640"
+            height="640"
+            aria-label="Snake game area"
+            role="img"
+          ></canvas>
+          <div class="overlay" id="overlay"></div>
+        </div>
+        <div class="controls" aria-label="Game actions">
+          <button id="start-btn" class="primary" type="button">Start</button>
+          <button id="pause-btn" type="button" disabled>Pause</button>
+          <button id="resume-btn" type="button" hidden>Resume</button>
+          <button id="restart-btn" type="button">Restart</button>
+          <button id="share-btn" type="button">Share Score</button>
+        </div>
+      </section>
+
+      <aside class="panel" aria-labelledby="settings-title">
+        <div class="panel__header">
+          <h2 id="settings-title">Settings</h2>
+        </div>
+        <form id="settings-form" class="settings" autocomplete="off">
+          <label>
+            Grid Size
+            <input id="grid-size" type="number" min="10" max="40" step="1" />
+          </label>
+          <label>
+            Base Speed (ticks/sec)
+            <input id="base-speed" type="number" min="4" max="20" step="1" />
+          </label>
+          <label class="toggle">
+            <input id="wrap-mode" type="checkbox" />
+            Wrap Around Walls
+          </label>
+          <label class="toggle">
+            <input id="powerups" type="checkbox" />
+            Powerups Enabled
+          </label>
+          <label class="toggle">
+            <input id="tilt" type="checkbox" />
+            Tilt Controls (beta)
+          </label>
+          <label>
+            Volume
+            <input id="volume" type="range" min="0" max="1" step="0.05" />
+          </label>
+          <label class="toggle">
+            <input id="mute" type="checkbox" />
+            Mute Audio
+          </label>
+        </form>
+        <section class="leaderboard" aria-labelledby="leaderboard-title">
+          <h3 id="leaderboard-title">Top Scores</h3>
+          <ol id="leaderboard"></ol>
+        </section>
+      </aside>
+    </main>
+
+    <section class="panel panel--wide" aria-labelledby="controls-title">
+      <div class="panel__header">
+        <h2 id="controls-title">Controls</h2>
+      </div>
+      <div class="control-grid">
+        <div class="control-info">
+          <p><strong>Keyboard:</strong> Arrow keys or WASD. Space = pause/resume.</p>
+          <p><strong>Touch:</strong> Swipe in any direction. Use the D-pad below.</p>
+          <p><strong>Replay:</strong> Provide a seed in the URL (e.g. <code>?seed=1234</code>).</p>
+        </div>
+        <div class="dpad" role="group" aria-label="On-screen D-pad">
+          <button data-dir="up" aria-label="Move up">▲</button>
+          <button data-dir="left" aria-label="Move left">◀</button>
+          <button data-dir="right" aria-label="Move right">▶</button>
+          <button data-dir="down" aria-label="Move down">▼</button>
+        </div>
+      </div>
+    </section>
+
+    <dialog id="gameover-dialog" class="modal" aria-labelledby="gameover-title">
+      <h2 id="gameover-title">Game Over</h2>
+      <p id="gameover-summary">You scored 0.</p>
+      <label>
+        Initials
+        <input id="player-initials" maxlength="3" placeholder="AAA" />
+      </label>
+      <div class="modal-actions">
+        <button id="gameover-retry" class="primary" type="button">Try Again</button>
+        <button id="gameover-close" type="button">Close</button>
+      </div>
+    </dialog>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
